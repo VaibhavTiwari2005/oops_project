@@ -44,4 +44,11 @@ class SystemController:
                     if self._try_launch(cmd):
                         return f"Opening {k}"
                 return f"{k.capitalize()} not found on this system."
-        return "Application not found."
+            
+        if self._try_launch([key]):
+            return f"Opening {key}"
+
+        
+        url = f"https://{key}.com"
+        webbrowser.open(url)
+        return f"Opening website {url}"
